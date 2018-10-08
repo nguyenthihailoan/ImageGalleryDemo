@@ -21,7 +21,7 @@ import java.util.List;
 public class AdapterImage extends RecyclerView.Adapter<AdapterImage.ViewHolderImage> {
     private Context mContext;
     private List<ImageObject> mImages;
-
+private var onListener: OnClickImageListener
     public AdapterImage(Context context, List<ImageObject> images) {
         this.mContext = context;
         this.mImages = images;
@@ -44,6 +44,11 @@ public class AdapterImage extends RecyclerView.Adapter<AdapterImage.ViewHolderIm
         Glide.with(mContext)
                 .load(ImageObject.getPath())
                 .into(holder.mImage);
+        holder.mImage.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    onListener.onClickImage(position)
+                }
+            })
     }
 
     @Override
@@ -63,4 +68,6 @@ public class AdapterImage extends RecyclerView.Adapter<AdapterImage.ViewHolderIm
             mImage = (ImageView) itemView.findViewById(R.id.image);
         }
     }
+    
+    
 }
