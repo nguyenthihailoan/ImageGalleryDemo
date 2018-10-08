@@ -21,10 +21,13 @@ import java.util.List;
 public class AdapterImage extends RecyclerView.Adapter<AdapterImage.ViewHolderImage> {
     private Context mContext;
     private List<ImageObject> mImages;
-private var onListener: OnClickImageListener
-    public AdapterImage(Context context, List<ImageObject> images) {
+    //tạo interface để lắng nghe sự kiện khi click item trong recyclerview
+    private OnClickImageListener onListener;
+    
+    public AdapterImage(Context context, List<ImageObject> images, OnClickImageListener onListener) {
         this.mContext = context;
         this.mImages = images;
+         this.onListener= onListener
     }
 
     public void setArrImage(List<ImageObject> images) {
@@ -44,8 +47,10 @@ private var onListener: OnClickImageListener
         Glide.with(mContext)
                 .load(ImageObject.getPath())
                 .into(holder.mImage);
+        //set sự kiện cho item 
         holder.mImage.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(p0: View?) {
+                    
                     onListener.onClickImage(position)
                 }
             })
@@ -69,5 +74,5 @@ private var onListener: OnClickImageListener
         }
     }
     
-    
+    //em có thể tạo interface để lắng nghe sự kiện ngay trong này  
 }
