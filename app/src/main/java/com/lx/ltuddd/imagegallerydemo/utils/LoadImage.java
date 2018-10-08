@@ -18,7 +18,8 @@ public class LoadImage {
     public static final String JPEG = "JPEG";
     public static final String GIFGCAP = "GIF";
     public static final String GIF = "gif";
-
+// dùng đệ quy đọc tất cả các file ảnh trong bộ nhớ
+    
     public static void getAllImage(File folder, List<ImageObject> listImage) {
         File[] listFile = folder.listFiles();
         for (File file : listFile) {
