@@ -68,13 +68,16 @@ public class MainActivity extends AppCompatActivity {
         mDialogProgressBar = new DialogProgressBar(MainActivity.this);
         mDialogProgressBar.show();
         mRecyclerImage = (RecyclerView) findViewById(R.id.recycle_image);
+        //set định dạng hiển thị cho recycler view 
+        //Linearlayout: vertical, horizontal
+        //Gridlayout: dạng lưới
         mRecyclerImage.setLayoutManager(new GridLayoutManager(getBaseContext(), 2));
         mImages = new ArrayList<>();
         mAdapterImage = new AdapterImage(getBaseContext(), mImages);
         mRecyclerImage.setAdapter(mAdapterImage);
         new ImageAsyncTask(reloadImages).execute();
     }
-
+// interface để lắng nghe ImageAsyncTask load toàn bộ ảnh
     private ReloadImages reloadImages = new ReloadImages() {
         @Override
         public void loadListImage(List<ImageObject> mImages) {
